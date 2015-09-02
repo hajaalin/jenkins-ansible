@@ -23,5 +23,10 @@ RUN apt-get install -y sudo
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
 RUN /ansible/bin/ansible-galaxy install f500.project_deploy_module
+RUN mkdir -p /ansible-modules
+RUN git clone https://github.com/cmprescott/ansible-xml.git /ansible-modules/ansible-xml
+RUN chown -R jenkins /ansible-modules
+
+ENV ANSIBLE_LIBRARY /ansible-modules/ansible-xml
 
 USER jenkins

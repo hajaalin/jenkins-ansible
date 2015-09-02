@@ -22,4 +22,6 @@ RUN pip install docker-py
 RUN apt-get install -y sudo
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
+RUN /ansible/bin/ansible-galaxy install f500.project_deploy_module
+
 USER jenkins
